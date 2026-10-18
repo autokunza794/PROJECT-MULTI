@@ -407,25 +407,63 @@
             });
 
             // ระบบเปิด-ปิดเสียงดนตรีพื้นหลัง (Background Music Logic)
+    <!-- Script สำหรับ Scroll Animation (Intersection Observer) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // ยกเลิกการ observe หลังจากแอนิเมชั่นเล่นแล้ว (ถ้าต้องการให้เล่นครั้งเดียว)
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // แสดงผลเมื่อมองเห็น element 15%
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // ระบบเปิด-ปิดเสียงดนตรีพื้นหลัง (Background Music Logic)
             const bgMusic = document.getElementById('bg-music');
+            const musicContainer = document.getElementById('music-container');
             const musicToggle = document.getElementById('music-toggle');
             const musicIcon = document.getElementById('music-icon');
             const musicText = document.getElementById('music-text');
+            const volumeSlider = document.getElementById('volume-slider');
             let isMusicPlaying = false;
+
+            // ตั้งค่าระดับเสียงเริ่มต้นจาก slider
+            bgMusic.volume = volumeSlider.value;
+
+            // ปรับระดับเสียงเมื่อเลื่อนแถบ
+            volumeSlider.addEventListener('input', (e) => {
+                bgMusic.volume = e.target.value;
+                if (bgMusic.volume == 0) {
+                    musicIcon.textContent = '🔇';
+                } else if (isMusicPlaying) {
+                    musicIcon.textContent = '🎵';
+                }
+            });
 
             musicToggle.addEventListener('click', () => {
                 if (isMusicPlaying) {
                     bgMusic.pause();
                     musicIcon.textContent = '🔇';
                     musicText.textContent = 'เล่นเพลง';
-                    musicToggle.classList.replace('bg-[#FF9A9E]', 'bg-[#FFB6B9]');
+                    musicContainer.classList.replace('bg-[#FF9A9E]', 'bg-[#FFB6B9]');
                 } else {
                     bgMusic.play().catch(error => console.log("กรุณาโต้ตอบกับหน้าเว็บก่อนเล่นเสียง", error));
-                    musicIcon.textContent = '🎵';
+                    musicIcon.textContent = bgMusic.volume == 0 ? '🔇' : '🎵';
                     musicText.textContent = 'หยุดเพลง';
-                    musicToggle.classList.replace('bg-[#FFB6B9]', 'bg-[#FF9A9E]');
+                    musicContainer.classList.replace('bg-[#FFB6B9]', 'bg-[#FF9A9E]');
                 }
-                isMusicPlaying = !isMusicPlaying;
             });
         });
     </script>
