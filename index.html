@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thai Desserts - มนต์เสน่ห์แห่งความหวาน</title>
     
-    <!-- 2. การใช้ Font 'Prompt' จาก Google Fonts (รองรับ Fallback ใน Tailwind) -->
+    <!-- Font 'Prompt' จาก Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- นำเข้า Tailwind CSS สำหรับการจัดเลย์เอาต์และดีไซน์ที่ทันสมัย -->
+    <!-- Tailwind CSS  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,11 +21,11 @@
                     },
                     colors: {
                         dessert: {
-                            bg: '#FAF6F0',      // สีพื้นหลังครีมอ่อน
-                            primary: '#E88D67', // สีชาไทย / ส้มอบอุ่น
-                            secondary: '#99A799',// สีใบเตย / เขียวพาสเทล
-                            accent: '#F3E9DD',  // สีน้ำกะทิ
-                            text: '#5C3D2E',    // สีช็อกโกแลต / น้ำตาลเข้ม
+                            bg: '#FAF6F0',      
+                            primary: '#E88D67', 
+                            secondary: '#99A799',
+                            accent: '#F3E9DD',  
+                            text: '#5C3D2E',    
                             card: '#FFFFFF'
                         }
                     },
@@ -46,7 +46,7 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphism Navbar */
+       
         .glass-nav {
             background: rgba(250, 246, 240, 0.85);
             backdrop-filter: blur(12px);
@@ -54,7 +54,7 @@
             border-bottom: 1px solid rgba(232, 141, 103, 0.1);
         }
 
-        /* Float Animation สำหรับรูปภาพหน้าแรก */
+        /* Float Animation  */
         .float-anim {
             animation: float 4s ease-in-out infinite;
         }
@@ -64,7 +64,7 @@
             100% { transform: translateY(0px); }
         }
 
-        /* 3. ภาพเคลื่อนไหวที่ทำเอง (CSS Bua Loy Animation) */
+        /* (CSS Animation) */
         .bua-loy-bowl {
             position: relative;
             width: 100%;
@@ -104,7 +104,7 @@
             100% { bottom: 130px; transform: scaleY(1.05); }
         }
 
-        /* Scroll Reveal Effect */
+        /* Scroll Effect */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -118,12 +118,12 @@
 </head>
 <body class="antialiased selection:bg-dessert-primary selection:text-white">
 
-    <!-- เสียงดนตรีประกอบพื้นหลัง (Background Music) -->
+
      <audio id="bg-music" loop>
         <source src="https://cdn.discordapp.com/attachments/1561279279466160138/1561290565801353357/sonican-lo-fi-music-loop-sentimental-jazzy-love-473154.mp3?ex=6ad5d0a6&is=6ad47f26&hm=d7806fa6c2e6da842d5efa2aaddbbb42f1531a7d1f1887089698627a57e282f5&" type="audio/mpeg">
     </audio>
 
-    <!-- ปุ่มเปิด/ปิดเพลงพร้อมปรับระดับเสียงลอยตัว (Floating Music Control) -->
+
     <div id="music-container" class="fixed top-24 right-4 md:right-6 z-50 bg-[#FFB6B9] hover:bg-[#FF9A9E] text-[#5C3D2E] rounded-full p-2 md:px-4 md:py-2.5 shadow-lg hover:shadow-hover transition-all duration-300 flex items-center gap-2 md:gap-3 border-2 border-white group">
         <button id="music-toggle" class="flex items-center justify-center gap-2 cursor-pointer outline-none">
             <span id="music-icon" class="text-xl group-hover:animate-bounce transition-transform">🔇</span>
@@ -134,7 +134,6 @@
     </div>
 
 
-    <!-- แถบเมนูด้านบน (Fixed Navbar) -->
     <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -142,7 +141,7 @@
                     <span class="font-bold text-2xl text-dessert-primary tracking-wide">Thai<span class="text-dessert-text">Desserts</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <!-- 5. การเชื่อมหน้าเว็บแบบ Scroll to Section -->
+                    <!--  การเชื่อมหน้าเว็บแบบ Scroll to Section -->
                     <a href="#home" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">หน้าแรก</a>
                     <a href="#history" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">ประวัติความเป็นมา</a>
                     <a href="#recipes" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">วิธีทำขนม</a>
@@ -153,9 +152,9 @@
         </div>
     </nav>
 
-    <!-- หน้า 1: หน้าแรก (Home Hero Section) -->
+
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <!-- วงกลมตกแต่งฉากหลัง -->
+       
         <div class="absolute top-20 left-10 w-64 h-64 bg-dessert-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
         <div class="absolute bottom-20 right-10 w-72 h-72 bg-dessert-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
 
@@ -172,7 +171,7 @@
                     ค้นพบเรื่องราวของเรา
                 </a>
             </div>
-            <!-- 1. รูปภาพที่มาจากการถ่ายเอง/AI -->
+    
             <div class="relative reveal active">
                 <div class="absolute inset-0 bg-gradient-to-tr from-dessert-accent to-white rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
                 <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561305514334490695/Gemini_Generated_Image_spmuwkspmuwkspmu.jfif?ex=6ad5de92&is=6ad48d12&hm=78e5e034052082831c85a3443e6c0633a74d30175e62de54db0c2d0bc4f26f67&" 
@@ -185,7 +184,7 @@
         </div>
     </section>
 
-    <!-- หน้า 2: ประวัติความเป็นมา (History) -->
+
     <section id="history" class="py-24 bg-white relative">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
@@ -215,7 +214,7 @@
         </div>
     </section>
 
-    <!-- หน้า 3: วิธีทำขนม (Recipes) -->
+
     <section id="recipes" class="py-24 bg-dessert-bg">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
@@ -225,7 +224,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- ขั้นตอนที่ 1 -->
+            
                 <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden">
                     <img src="https://media.discordapp.net/attachments/1561279279466160138/1561281486622035968/Gemini_Generated_Image_80nafy80nafy80na.jpg?ex=6ad5c831&is=6ad476b1&hm=18c1abe7c339d3d8052834ee133c0b48c91a52340b288f1fde79748710908bb9&=&format=webp" alt="ขั้นตอนที่ 1: เตรียมวัตถุดิบ" class="w-full h-48 object-cover">
                     <div class="p-6 flex-grow">
@@ -237,7 +236,7 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 2 -->
+             
                 <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 100ms;">
                     <img src="https://media.discordapp.net/attachments/1561279279466160138/1561281796312670248/Gemini_Generated_Image_918t0o918t0o918t.jpg?ex=6ad5c87b&is=6ad476fb&hm=e112112f334e5db7d0c5c29908470ea28a6210e8d98e2b4f0a18d887144c6851&=&format=webp" alt="ขั้นตอนที่ 2: ต้มเม็ดบัวลอย" class="w-full h-48 object-cover">
                     <div class="p-6 flex-grow">
@@ -249,7 +248,6 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 3 -->
                 <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 200ms;">
                     <img src="https://media.discordapp.net/attachments/1561279279466160138/1561282068732710983/Gemini_Generated_Image_w3qowbw3qowbw3qo.jpg?ex=6ad5c8bc&is=6ad4773c&hm=1d9a360c6dea2a737c3831f44b9b94ed64eccbe85d3db8cf12f24d533845c6a1&=&format=webp" alt="ขั้นตอนที่ 3: ทำไข่หวาน" class="w-full h-48 object-cover">
                     <div class="p-6 flex-grow">
@@ -261,7 +259,7 @@
                     </div>
                 </div>
 
-                <!-- ขั้นตอนที่ 4 -->
+    
                 <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 300ms;">
                     <img src="https://media.discordapp.net/attachments/1561279279466160138/1561282315009794048/Gemini_Generated_Image_qoogc7qoogc7qoog.jpg?ex=6ad5c8f7&is=6ad47777&hm=fa1574e742638fa30454dbb39ce9290748abfe77a6e1e6f09f92ac0ed85f61d0&=&format=webp" alt="ขั้นตอนที่ 4: จัดเสิร์ฟ" class="w-full h-48 object-cover">
                     <div class="p-6 flex-grow">
@@ -276,7 +274,7 @@
         </div>
     </section>
 
-    <!-- หน้า 4: มัลติมีเดีย แกลเลอรี และเสียง (Media) -->
+    <!--(Media) -->
     <section id="media" class="py-24 bg-white relative">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
@@ -286,9 +284,9 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- คอลัมน์ซ้าย: วิดีโอและภาพเคลื่อนไหว -->
+         
                 <div class="space-y-8 reveal">
-                    <!-- 3. วิดีโอทำเอง -->
+      
                     <div class="bg-dessert-bg p-4 rounded-3xl shadow-soft">
                         <h3 class="text-lg font-semibold mb-3 px-2">🎬 สื่อวิดีโอ</h3>
                         <video class="w-full rounded-2xl shadow-inner outline-none" controls poster="https://media.discordapp.net/attachments/1561279279466160138/1561282315009794048/Gemini_Generated_Image_qoogc7qoogc7qoog.jpg?ex=6ad5c8f7&is=6ad47777&hm=fa1574e742638fa30454dbb39ce9290748abfe77a6e1e6f09f92ac0ed85f61d0&=&format=webp">
@@ -297,7 +295,7 @@
                         </video>
                     </div>
 
-                    <!-- 3. ภาพเคลื่อนไหว CSS ที่ทำเองในเว็บเพจ -->
+            
                     <div class="bg-white border-2 border-dessert-accent p-6 rounded-3xl shadow-soft">
                         <h3 class="text-lg font-semibold mb-4">✨ บัวลอยเด้งดึ๋ง</h3>
                         <div class="bua-loy-bowl">
@@ -309,7 +307,7 @@
                     </div>
                 </div>
 
-                <!-- คอลัมน์ขวา: แกลเลอรีและเสียง -->
+            
                 <div class="space-y-8 reveal" style="transition-delay: 200ms;">
                     <!-- รูปภาพแกลเลอรี -->
                     <h3 class="text-lg font-semibold mb-4 px-2">📸 แกลเลอรีภาพ</h3>
@@ -329,7 +327,7 @@
         </div>
     </section>
 
-    <!-- หน้า 5: สมาชิกในกลุ่ม (Team Members) -->
+    <!-- Team Members -->
     <section id="team" class="py-24 bg-dessert-bg relative">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16 reveal">
@@ -339,35 +337,35 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- สมาชิกคนที่ 1 -->
+                <!--  1 -->
                 <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal">
                     <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🧑‍💻</div>
                     <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย เจษฎาภรณ์ ประกอบเกื้อ</h3>
                     <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664005-8</p>
                     <p class="text-gray-500 text-sm">หน้าที่: ออกแบบเว็บ / โค้ด</p>
                 </div>
-                <!-- สมาชิกคนที่ 2 -->
+                <!--  2 -->
                 <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 100ms;">
                     <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">👩‍🎨</div>
                     <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย ศุภกร วิชัยสุนทร</h3>
                     <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664014-0</p>
                     <p class="text-gray-500 text-sm">หน้าที่: จัดหาภาพ / ตกแต่ง</p>
                 </div>
-                <!-- สมาชิกคนที่ 3 -->
+                <!--  3 -->
                 <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 200ms;">
                     <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎬</div>
                     <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย คุณากร ศรีรัตน์</h3>
                     <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664011-6</p>
                     <p class="text-gray-500 text-sm">หน้าที่: ถ่ายทำ / ตัดต่อวิดีโอ</p>
                 </div>
-                <!-- สมาชิกคนที่ 4 -->
+                <!--  4 -->
                 <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 300ms;">
                     <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎵</div>
                     <h3 class="text-lg font-semibold text-dessert-text mb-1">นางสาว เจือจันทร์ อร่ามเรือง</h3>
                     <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664008-2</p>
                     <p class="text-gray-500 text-sm">หน้าที่: เสียงประกอบ / พรีเซนต์</p>
                 </div>
-                <!-- สมาชิกคนที่ 5 -->
+                <!--  5 -->
                 <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 400ms;">
                     <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">📝</div>
                     <h3 class="text-lg font-semibold text-dessert-text mb-1">นางสาว ณิชภัทร ราชรินทร์</h3>
@@ -383,7 +381,7 @@
         <p class="font-light">© 2026 มนต์เสน่ห์แห่งขนมไทย | Assignment วิชา Multimedia System</p>
     </footer>
 
-    <!-- Script สำหรับ Scroll Animation (Intersection Observer) -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
@@ -392,13 +390,13 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // ยกเลิกการ observe หลังจากแอนิเมชั่นเล่นแล้ว (ถ้าต้องการให้เล่นครั้งเดียว)
+              
                         observer.unobserve(entry.target); 
                     }
                 });
             }, {
                 root: null,
-                threshold: 0.15, // แสดงผลเมื่อมองเห็น element 15%
+                threshold: 0.15, 
                 rootMargin: "0px 0px -50px 0px"
             });
 
@@ -406,7 +404,7 @@
                 revealOnScroll.observe(reveal);
             });
 
-            // ระบบเปิด-ปิดเสียงดนตรีพื้นหลัง (Background Music Logic)
+        
             const bgMusic = document.getElementById('bg-music');
             const musicContainer = document.getElementById('music-container');
             const musicToggle = document.getElementById('music-toggle');
@@ -415,10 +413,10 @@
             const volumeSlider = document.getElementById('volume-slider');
             let isMusicPlaying = false;
 
-            // ตั้งค่าระดับเสียงเริ่มต้นจาก slider
+         
             bgMusic.volume = volumeSlider.value;
 
-            // ปรับระดับเสียงเมื่อเลื่อนแถบ
+
             volumeSlider.addEventListener('input', (e) => {
                 bgMusic.volume = e.target.value;
                 if (bgMusic.volume == 0) {
