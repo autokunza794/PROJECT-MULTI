@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Desserts - มนต์เสน่ห์แห่งความหวาน</title>
+    
+    <!-- 2. การใช้ Font 'Prompt' จาก Google Fonts (รองรับ Fallback ใน Tailwind) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- นำเข้า Tailwind CSS สำหรับการจัดเลย์เอาต์และดีไซน์ที่ทันสมัย -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        dessert: {
+                            bg: '#FAF6F0',      // สีพื้นหลังครีมอ่อน
+                            primary: '#E88D67', // สีชาไทย / ส้มอบอุ่น
+                            secondary: '#99A799',// สีใบเตย / เขียวพาสเทล
+                            accent: '#F3E9DD',  // สีน้ำกะทิ
+                            text: '#5C3D2E',    // สีช็อกโกแลต / น้ำตาลเข้ม
+                            card: '#FFFFFF'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(92, 61, 46, 0.1)',
+                        'hover': '0 20px 40px -10px rgba(232, 141, 103, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS สำหรับ Animations ที่ซับซ้อนขึ้น -->
+    <style>
+        body {
+            background-color: #FAF6F0;
+            color: #5C3D2E;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(250, 246, 240, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(232, 141, 103, 0.1);
+        }
+
+        /* Float Animation สำหรับรูปภาพหน้าแรก */
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 3. ภาพเคลื่อนไหวที่ทำเอง (CSS Bua Loy Animation) */
+        .bua-loy-bowl {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #F3E9DD;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .bowl {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 70px;
+            background: white;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            z-index: 5;
+            animation: bounce-ball 1.5s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate;
+        }
+        .ball-pink { background: #FFB6B9; left: calc(50% - 40px); animation-delay: 0s; }
+        .ball-green { background: #99A799; left: calc(50% + 10px); animation-delay: 0.3s; }
+        .ball-yellow { background: #FCE38A; left: calc(50% - 15px); animation-delay: 0.6s; z-index: 6; width: 35px; height: 35px; }
+
+        @keyframes bounce-ball {
+            0% { bottom: 60px; transform: scaleY(0.9); }
+            100% { bottom: 130px; transform: scaleY(1.05); }
+        }
+
+        /* Scroll Reveal Effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-dessert-primary selection:text-white">
+
+    <!-- เสียงดนตรีประกอบพื้นหลัง (Background Music) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ปุ่มเปิด/ปิดเพลงลอยตัว (Floating Music Button) -->
+    <button id="music-toggle" class="fixed top-24 right-4 md:right-6 z-50 bg-[#FFB6B9] hover:bg-[#FF9A9E] text-[#5C3D2E] rounded-full p-3 md:px-4 md:py-2.5 shadow-lg hover:shadow-hover transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 border-2 border-white cursor-pointer outline-none group">
+        <span id="music-icon" class="text-xl group-hover:animate-bounce">🔇</span>
+        <span id="music-text" class="hidden md:inline font-medium text-sm">เล่นเพลง</span>
+    </button>
+
+    <!-- แถบเมนูด้านบน (Fixed Navbar) -->
+    <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-bold text-2xl text-dessert-primary tracking-wide">Thai<span class="text-dessert-text">Desserts</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <!-- 5. การเชื่อมหน้าเว็บแบบ Scroll to Section -->
+                    <a href="#home" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">หน้าแรก</a>
+                    <a href="#history" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">ประวัติความเป็นมา</a>
+                    <a href="#recipes" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">วิธีทำขนม</a>
+                    <a href="#media" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">มัลติมีเดีย</a>
+                    <a href="#team" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">สมาชิกจัดทำ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- หน้า 1: หน้าแรก (Home Hero Section) -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+        <!-- วงกลมตกแต่งฉากหลัง -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-dessert-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-72 h-72 bg-dessert-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="text-center md:text-left reveal active">
+                <span class="text-dessert-primary font-semibold tracking-wider uppercase text-sm mb-4 block">Welcome to</span>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight text-dessert-text">
+                    มนต์เสน่ห์แห่ง<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-dessert-primary to-orange-400">ขนมไทย</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                    สัมผัสความหอมหวาน อร่อย และเอกลักษณ์ประจำชาติที่สืบทอดกันมาอย่างยาวนาน ด้วยวัตถุดิบจากธรรมชาติ กะทิ น้ำตาลโตนด และกลิ่นหอมควันเทียน
+                </p>
+                <a href="#history" class="inline-block bg-dessert-primary hover:bg-orange-500 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-hover transform hover:-translate-y-1 transition-all duration-300">
+                    ค้นพบเรื่องราวของเรา
+                </a>
+            </div>
+            <!-- 1. รูปภาพที่มาจากการถ่ายเอง/AI -->
+            <div class="relative reveal active">
+                <div class="absolute inset-0 bg-gradient-to-tr from-dessert-accent to-white rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
+                <img src="https://images.unsplash.com/photo-1601000938259-9e92002320b2?auto=format&fit=crop&w=800&q=80" 
+                     alt="ขนมไทยรวมมิตร" 
+                     class="rounded-[3rem] shadow-soft float-anim object-cover w-full h-[400px] md:h-[500px]">
+                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md text-sm font-medium">
+                    ✨ ขนมไทยมงคล ๙ ประการ
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 2: ประวัติความเป็นมา (History) -->
+    <section id="history" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-dessert-text mb-4">ย้อนรอยความหวาน</h2>
+                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80" 
+                         alt="วัตถุดิบขนมไทยโบราณ" 
+                         class="rounded-2xl shadow-soft hover:shadow-hover transition-shadow duration-300 object-cover w-full h-[400px]">
+                </div>
+                <div class="space-y-6 reveal">
+                    <h3 class="text-2xl font-semibold text-dessert-primary">อิทธิพลจากท้าวทองกีบม้า</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        ขนมไทยมีมาตั้งแต่สมัยโบราณ แต่ในสมัยอยุธยา โดยเฉพาะยุคของสมเด็จพระนารายณ์มหาราช ได้มีสตรีชาวโปรตุเกส นามว่า <strong>"ท้าวทองกีบม้า" (มารี กีมาร์)</strong> เข้ามามีบทบาทสำคัญ
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        ท่านได้นำไข่และน้ำตาลทรายมาเป็นส่วนประกอบหลัก สร้างสรรค์เมนูที่เราคุ้นเคยกันดีในปัจจุบัน เช่น ทองหยิบ ทองหยอด ฝอยทอง และสังขยา ทำให้วงการขนมไทยมีความหลากหลายและวิจิตรบรรจงมากยิ่งขึ้น
+                    </p>
+                    <div class="p-6 bg-dessert-bg rounded-xl border-l-4 border-dessert-primary">
+                        <p class="italic text-gray-700">"ศิลปะแห่งความหวาน ที่ผสานวัฒนธรรมตะวันตกและตะวันออกได้อย่างลงตัว"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 3: วิธีทำขนม (Recipes) -->
+    <section id="recipes" class="py-24 bg-dessert-bg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-dessert-text mb-4">สูตรลับความอร่อย: บัวลอยไข่หวาน (4 ขั้นตอน)</h2>
+                <div class="w-24 h-1 bg-dessert-secondary mx-auto rounded-full mb-8"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">ขั้นตอนการทำที่ชัดเจน พร้อมภาพประกอบเพื่อให้สามารถทำตามได้ง่ายๆ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- ขั้นตอนที่ 1 -->
+                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden">
+                    <img src="https://placehold.co/400x300/FFB6B9/FFFFFF?text=Step+1" alt="ขั้นตอนที่ 1: เตรียมวัตถุดิบ" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 1</div>
+                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ผสมแป้งและปั้นบัวลอย</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            เตรียมแป้งข้าวเหนียว นวดผสมกับน้ำสีธรรมชาติที่คั้นไว้ (เช่น น้ำใบเตย, น้ำอัญชัน, ฟักทองนึ่งบด) นวดจนแป้งเนียนนุ่ม ไม่ติดมือ และปั้นเป็นก้อนกลมเล็กๆ ขนาดพอดีคำ
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 2 -->
+                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 100ms;">
+                    <img src="https://placehold.co/400x300/99A799/FFFFFF?text=Step+2" alt="ขั้นตอนที่ 2: ต้มเม็ดบัวลอย" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 2</div>
+                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ต้มเม็ดบัวลอยให้สุก</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            ตั้งน้ำเปล่าให้เดือดจัด นำเม็ดบัวลอยที่ปั้นไว้ลงไปต้ม เมื่อเม็ดบัวลอยสุกจะลอยขึ้นมาผิวน้ำ ให้ใช้กระชอนตักขึ้นไปแช่ในน้ำเย็นจัดทันที เพื่อให้แป้งเหนียวนุ่มและไม่ติดกัน
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 3 -->
+                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 200ms;">
+                    <img src="https://placehold.co/400x300/FCE38A/5C3D2E?text=Step+3" alt="ขั้นตอนที่ 3: ทำไข่หวาน" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 3</div>
+                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ทำน้ำกะทิและไข่หวาน</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            ตั้งกะทิด้วยไฟอ่อน ใส่น้ำตาลโตนดและเกลือเล็กน้อย มัดใบเตยใส่ลงไปเพิ่มความหอม ตอกไข่ไก่ใส่ลงไปต้มในน้ำกะทิเบาๆ รอจนไข่สุกตามความชอบ (ไข่หวาน)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ขั้นตอนที่ 4 -->
+                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 300ms;">
+                    <img src="https://placehold.co/400x300/E88D67/FFFFFF?text=Step+4" alt="ขั้นตอนที่ 4: จัดเสิร์ฟ" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 4</div>
+                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">รวมส่วนผสมจัดเสิร์ฟ</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            นำเม็ดบัวลอยที่สะเด็ดน้ำแล้วใส่ลงในหม้อน้ำกะทิ คนเบาๆ ให้เข้ากัน รอให้เดือดปุดๆ เล็กน้อย ปิดเตา ตักใส่ถ้วยพร้อมไข่หวาน เสิร์ฟขณะร้อนเพื่อความอร่อยและหอมละมุน
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 4: มัลติมีเดีย แกลเลอรี และเสียง (Media) -->
+    <section id="media" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-dessert-text mb-4">มัลติมีเดียและแกลเลอรี</h2>
+                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full"></div>
+                <p class="text-gray-600 mt-4">รวบรวมภาพ วิดีโอ และเสียงประกอบสำหรับผลงาน</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- คอลัมน์ซ้าย: วิดีโอและภาพเคลื่อนไหว -->
+                <div class="space-y-8 reveal">
+                    <!-- 3. วิดีโอทำเอง -->
+                    <div class="bg-dessert-bg p-4 rounded-3xl shadow-soft">
+                        <h3 class="text-lg font-semibold mb-3 px-2">🎬 วิดีโอสาธิตการทำ (ใส่ไฟล์ของกลุ่ม)</h3>
+                        <video class="w-full rounded-2xl shadow-inner outline-none" controls poster="https://placehold.co/800x450/E88D67/FFF?text=Video+Placeholder">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+                        </video>
+                    </div>
+
+                    <!-- 3. ภาพเคลื่อนไหว CSS ที่ทำเองในเว็บเพจ -->
+                    <div class="bg-white border-2 border-dessert-accent p-6 rounded-3xl shadow-soft">
+                        <h3 class="text-lg font-semibold mb-4">✨ อนิเมชั่นทำเอง: บัวลอยเด้งดึ๋ง</h3>
+                        <div class="bua-loy-bowl">
+                            <div class="bowl"></div>
+                            <div class="ball ball-pink"></div>
+                            <div class="ball ball-green"></div>
+                            <div class="ball ball-yellow"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- คอลัมน์ขวา: แกลเลอรีและเสียง -->
+                <div class="space-y-8 reveal" style="transition-delay: 200ms;">
+                    <!-- รูปภาพแกลเลอรี -->
+                    <h3 class="text-lg font-semibold mb-4 px-2">📸 แกลเลอรีภาพ (ผลงานกลุ่ม)</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="overflow-hidden rounded-2xl shadow-soft">
+                            <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=400&q=80" alt="Gallery 1" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="overflow-hidden rounded-2xl shadow-soft">
+                            <img src="https://images.unsplash.com/photo-1621285223368-dc29bd0d0e66?auto=format&fit=crop&w=400&q=80" alt="Gallery 2" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="col-span-2 overflow-hidden rounded-2xl shadow-soft">
+                            <img src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=800&q=80" alt="Gallery 3" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- หน้า 5: สมาชิกในกลุ่ม (Team Members) -->
+    <section id="team" class="py-24 bg-dessert-bg relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-dessert-text mb-4">สมาชิกผู้จัดทำ</h2>
+                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600">วิชา Multimedia System (กลุ่ม ...)</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- สมาชิกคนที่ 1 -->
+                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal">
+                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🧑‍💻</div>
+                    <h3 class="text-lg font-semibold text-dessert-text mb-1">ชื่อ-นามสกุล</h3>
+                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 6XXXXXXX</p>
+                    <p class="text-gray-500 text-sm">หน้าที่: ออกแบบเว็บ / โค้ด</p>
+                </div>
+                <!-- สมาชิกคนที่ 2 -->
+                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">👩‍🎨</div>
+                    <h3 class="text-lg font-semibold text-dessert-text mb-1">ชื่อ-นามสกุล</h3>
+                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 6XXXXXXX</p>
+                    <p class="text-gray-500 text-sm">หน้าที่: จัดหาภาพ / ตกแต่ง</p>
+                </div>
+                <!-- สมาชิกคนที่ 3 -->
+                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎬</div>
+                    <h3 class="text-lg font-semibold text-dessert-text mb-1">ชื่อ-นามสกุล</h3>
+                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 6XXXXXXX</p>
+                    <p class="text-gray-500 text-sm">หน้าที่: ถ่ายทำ / ตัดต่อวิดีโอ</p>
+                </div>
+                <!-- สมาชิกคนที่ 4 -->
+                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎵</div>
+                    <h3 class="text-lg font-semibold text-dessert-text mb-1">ชื่อ-นามสกุล</h3>
+                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 6XXXXXXX</p>
+                    <p class="text-gray-500 text-sm">หน้าที่: เสียงประกอบ / พรีเซนต์</p>
+                </div>
+                <!-- สมาชิกคนที่ 5 -->
+                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 400ms;">
+                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">📝</div>
+                    <h3 class="text-lg font-semibold text-dessert-text mb-1">ชื่อ-นามสกุล</h3>
+                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 6XXXXXXX</p>
+                    <p class="text-gray-500 text-sm">หน้าที่: รวบรวมเนื้อหา / เรียบเรียง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dessert-text text-white py-8 text-center">
+        <p class="font-light">© 2026 มนต์เสน่ห์แห่งขนมไทย | Assignment วิชา Multimedia System</p>
+    </footer>
+
+    <!-- Script สำหรับ Scroll Animation (Intersection Observer) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // ยกเลิกการ observe หลังจากแอนิเมชั่นเล่นแล้ว (ถ้าต้องการให้เล่นครั้งเดียว)
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // แสดงผลเมื่อมองเห็น element 15%
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // ระบบเปิด-ปิดเสียงดนตรีพื้นหลัง (Background Music Logic)
+            const bgMusic = document.getElementById('bg-music');
+            const musicToggle = document.getElementById('music-toggle');
+            const musicIcon = document.getElementById('music-icon');
+            const musicText = document.getElementById('music-text');
+            let isMusicPlaying = false;
+
+            musicToggle.addEventListener('click', () => {
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                    musicIcon.textContent = '🔇';
+                    musicText.textContent = 'เล่นเพลง';
+                    musicToggle.classList.replace('bg-[#FF9A9E]', 'bg-[#FFB6B9]');
+                } else {
+                    bgMusic.play().catch(error => console.log("กรุณาโต้ตอบกับหน้าเว็บก่อนเล่นเสียง", error));
+                    musicIcon.textContent = '🎵';
+                    musicText.textContent = 'หยุดเพลง';
+                    musicToggle.classList.replace('bg-[#FFB6B9]', 'bg-[#FF9A9E]');
+                }
+                isMusicPlaying = !isMusicPlaying;
+            });
+        });
+    </script>
+</body>
+</html>
