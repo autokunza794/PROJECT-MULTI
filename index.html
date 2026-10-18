@@ -378,35 +378,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
+      <!-- Footer -->
     <footer class="bg-dessert-text text-white py-8 text-center">
         <p class="font-light">© 2026 มนต์เสน่ห์แห่งขนมไทย | Assignment วิชา Multimedia System</p>
     </footer>
 
-    <!-- Script สำหรับ Scroll Animation (Intersection Observer) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-
-            const revealOnScroll = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // ยกเลิกการ observe หลังจากแอนิเมชั่นเล่นแล้ว (ถ้าต้องการให้เล่นครั้งเดียว)
-                        observer.unobserve(entry.target); 
-                    }
-                });
-            }, {
-                root: null,
-                threshold: 0.15, // แสดงผลเมื่อมองเห็น element 15%
-                rootMargin: "0px 0px -50px 0px"
-            });
-
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
-
-            // ระบบเปิด-ปิดเสียงดนตรีพื้นหลัง (Background Music Logic)
     <!-- Script สำหรับ Scroll Animation (Intersection Observer) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
