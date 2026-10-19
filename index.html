@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work24 - มนต์เสน่ห์แห่งความหวาน</title>
+    <title>Work24 - หน้าแรก</title>
     
-    <!-- Font 'Prompt' จาก Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Prompt', 'sans-serif'],
+                        sans: ['Prompt', 'Tahoma', 'sans-serif'],
                     },
                     colors: {
                         dessert: {
-                            bg: '#FAF6F0',      
+                            bg: '#FAF6F0', 
                             primary: '#E88D67', 
                             secondary: '#99A799',
-                            accent: '#F3E9DD',  
-                            text: '#5C3D2E',    
+                            accent: '#F3E9DD', 
+                            text: '#5C3D2E', 
                             card: '#FFFFFF'
                         }
                     },
@@ -37,94 +35,28 @@
             }
         }
     </script>
-
- 
     <style>
-        body {
-            background-color: #FAF6F0;
-            color: #5C3D2E;
-            overflow-x: hidden;
-        }
-
-       
+        body { background-color: #FAF6F0; color: #5C3D2E; overflow-x: hidden; }
         .glass-nav {
             background: rgba(250, 246, 240, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(232, 141, 103, 0.1);
         }
-
-        /* Float Animation  */
-        .float-anim {
-            animation: float 4s ease-in-out infinite;
-        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
         @keyframes float {
-            0% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* (CSS Animation) */
-        .bua-loy-bowl {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background: #F3E9DD;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .bowl {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 140px;
-            height: 70px;
-            background: white;
-            border-bottom-left-radius: 70px;
-            border-bottom-right-radius: 70px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-        .ball {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            z-index: 5;
-            animation: bounce-ball 1.5s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate;
-        }
-        .ball-pink { background: #FFB6B9; left: calc(50% - 40px); animation-delay: 0s; }
-        .ball-green { background: #99A799; left: calc(50% + 10px); animation-delay: 0.3s; }
-        .ball-yellow { background: #FCE38A; left: calc(50% - 15px); animation-delay: 0.6s; z-index: 6; width: 35px; height: 35px; }
-
-        @keyframes bounce-ball {
-            0% { bottom: 60px; transform: scaleY(0.9); }
-            100% { bottom: 130px; transform: scaleY(1.05); }
-        }
-
-        /* Scroll Effect */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body class="antialiased selection:bg-dessert-primary selection:text-white">
 
-
-     <audio id="bg-music" loop>
+    <audio id="bg-music" loop>
         <source src="https://cdn.discordapp.com/attachments/1561279279466160138/1561290565801353357/sonican-lo-fi-music-loop-sentimental-jazzy-love-473154.mp3?ex=6ad5d0a6&is=6ad47f26&hm=d7806fa6c2e6da842d5efa2aaddbbb42f1531a7d1f1887089698627a57e282f5&" type="audio/mpeg">
     </audio>
 
-
-    <div id="music-container" class="fixed top-24 right-4 md:right-6 z-50 bg-[#FFB6B9] hover:bg-[#FF9A9E] text-[#5C3D2E] rounded-full p-2 md:px-4 md:py-2.5 shadow-lg hover:shadow-hover transition-all duration-300 flex items-center gap-2 md:gap-3 border-2 border-white group">
+    <div id="music-container" class="fixed top-24 right-4 md:right-6 z-50 bg-[#FFB6B9] hover:bg-[#FF9A9E] text-[#5C3D2E] rounded-full p-2 md:px-4 md:py-2.5 shadow-lg transition-all duration-300 flex items-center gap-2 md:gap-3 border-2 border-white group">
         <button id="music-toggle" class="flex items-center justify-center gap-2 cursor-pointer outline-none">
             <span id="music-icon" class="text-xl group-hover:animate-bounce transition-transform">🔇</span>
             <span id="music-text" class="hidden md:inline font-medium text-sm whitespace-nowrap">เล่นเพลง</span>
@@ -133,33 +65,29 @@
         <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" title="ปรับระดับเสียง" class="hidden sm:block w-16 md:w-20 h-1.5 bg-white/60 rounded-lg appearance-none cursor-pointer accent-[#5C3D2E]">
     </div>
 
-
     <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                <a href="index.html" class="flex-shrink-0 flex items-center">
                     <span class="font-bold text-2xl text-dessert-primary tracking-wide">Thai<span class="text-dessert-text">Desserts</span></span>
-                </div>
+                </a>
                 <div class="hidden md:flex space-x-8">
-                    <!--  การเชื่อมหน้าเว็บแบบ Scroll to Section -->
-                    <a href="#home" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">หน้าแรก</a>
-                    <a href="#history" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">ประวัติความเป็นมา</a>
-                    <a href="#recipes" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">วิธีทำขนม</a>
-                    <a href="#media" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">มัลติมีเดีย</a>
-                    <a href="#team" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">สมาชิกจัดทำ</a>
+                    <a href="index.html" class="text-dessert-primary font-bold transition-colors">หน้าแรก</a>
+                    <a href="history.html" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">ประวัติความเป็นมา</a>
+                    <a href="recipes.html" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">วิธีทำขนม</a>
+                    <a href="media.html" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">มัลติมีเดีย</a>
+                    <a href="team.html" class="text-dessert-text hover:text-dessert-primary font-medium transition-colors">สมาชิกจัดทำ</a>
                 </div>
             </div>
         </div>
     </nav>
 
-
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-       
+    <section class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
         <div class="absolute top-20 left-10 w-64 h-64 bg-dessert-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
         <div class="absolute bottom-20 right-10 w-72 h-72 bg-dessert-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
 
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="text-center md:text-left reveal active">
+            <div class="text-center md:text-left">
                 <span class="text-dessert-primary font-semibold tracking-wider uppercase text-sm mb-4 block">Welcome to</span>
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight text-dessert-text">
                     มนต์เสน่ห์แห่ง<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-dessert-primary to-orange-400">ขนมไทย</span>
@@ -167,12 +95,12 @@
                 <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
                     สัมผัสความหอมหวาน อร่อย และเอกลักษณ์ประจำชาติที่สืบทอดกันมาอย่างยาวนาน ด้วยวัตถุดิบจากธรรมชาติ กะทิ น้ำตาลโตนด และกลิ่นหอมควันเทียน
                 </p>
-                <a href="#history" class="inline-block bg-dessert-primary hover:bg-orange-500 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-hover transform hover:-translate-y-1 transition-all duration-300">
+                <a href="history.html" class="inline-block bg-dessert-primary hover:bg-orange-500 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-hover transform hover:-translate-y-1 transition-all duration-300">
                     ค้นพบเรื่องราวของเรา
                 </a>
             </div>
     
-            <div class="relative reveal active">
+            <div class="relative">
                 <div class="absolute inset-0 bg-gradient-to-tr from-dessert-accent to-white rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
                 <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561305514334490695/Gemini_Generated_Image_spmuwkspmuwkspmu.jfif?ex=6ad5de92&is=6ad48d12&hm=78e5e034052082831c85a3443e6c0633a74d30175e62de54db0c2d0bc4f26f67&" 
                      alt="ขนมไทยรวมมิตร" 
@@ -184,261 +112,80 @@
         </div>
     </section>
 
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hidden fixed bottom-6 right-6 z-50 bg-dessert-primary text-white p-3 rounded-full shadow-lg hover:bg-orange-500 transition-all">
+        ▲
+    </button>
 
-    <section id="history" class="py-24 bg-white relative">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-bold text-dessert-text mb-4">ย้อนรอยความหวาน</h2>
-                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561306500822081597/Gemini_Generated_Image_3av52t3av52t3av5.jfif?ex=6ad5df7d&is=6ad48dfd&hm=24fa585d5ebd017f39fc5748e70c374f76b38122e68eab91d5c4e1369346152f&" 
-                         alt="วัตถุดิบขนมไทยโบราณ" 
-                         class="rounded-2xl shadow-soft hover:shadow-hover transition-shadow duration-300 object-cover w-full h-[400px]">
-                </div>
-                <div class="space-y-6 reveal">
-                    <h3 class="text-2xl font-semibold text-dessert-primary">อิทธิพลจากท้าวทองกีบม้า</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        ขนมไทยมีมาตั้งแต่สมัยโบราณ แต่ในสมัยอยุธยา โดยเฉพาะยุคของสมเด็จพระนารายณ์มหาราช ได้มีสตรีชาวโปรตุเกส นามว่า <strong>"ท้าวทองกีบม้า" (มารี กีมาร์)</strong> เข้ามามีบทบาทสำคัญ
-                    </p>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        ท่านได้นำไข่และน้ำตาลทรายมาเป็นส่วนประกอบหลัก สร้างสรรค์เมนูที่เราคุ้นเคยกันดีในปัจจุบัน เช่น ทองหยิบ ทองหยอด ฝอยทอง และสังขยา ทำให้วงการขนมไทยมีความหลากหลายและวิจิตรบรรจงมากยิ่งขึ้น
-                    </p>
-                    <div class="p-6 bg-dessert-bg rounded-xl border-l-4 border-dessert-primary">
-                        <p class="italic text-gray-700">"ศิลปะแห่งความหวาน ที่ผสานวัฒนธรรมตะวันตกและตะวันออกได้อย่างลงตัว"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="recipes" class="py-24 bg-dessert-bg">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-bold text-dessert-text mb-4">สูตรลับความอร่อย: บัวลอยไข่หวาน (4 ขั้นตอน)</h2>
-                <div class="w-24 h-1 bg-dessert-secondary mx-auto rounded-full mb-8"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">ขั้นตอนการทำที่ชัดเจน พร้อมภาพประกอบเพื่อให้สามารถทำตามได้ง่ายๆ</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden">
-                    <img src="https://media.discordapp.net/attachments/1561279279466160138/1561281486622035968/Gemini_Generated_Image_80nafy80nafy80na.jpg?ex=6ad5c831&is=6ad476b1&hm=18c1abe7c339d3d8052834ee133c0b48c91a52340b288f1fde79748710908bb9&=&format=webp" alt="ขั้นตอนที่ 1: เตรียมวัตถุดิบ" class="w-full h-48 object-cover">
-                    <div class="p-6 flex-grow">
-                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 1</div>
-                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ผสมแป้งและปั้นบัวลอย</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            เตรียมแป้งข้าวเหนียว นวดผสมกับน้ำสีธรรมชาติที่คั้นไว้ (เช่น น้ำใบเตย, น้ำอัญชัน, ฟักทองนึ่งบด) นวดจนแป้งเนียนนุ่ม ไม่ติดมือ และปั้นเป็นก้อนกลมเล็กๆ ขนาดพอดีคำ
-                        </p>
-                    </div>
-                </div>
-
-             
-                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 100ms;">
-                    <img src="https://media.discordapp.net/attachments/1561279279466160138/1561281796312670248/Gemini_Generated_Image_918t0o918t0o918t.jpg?ex=6ad5c87b&is=6ad476fb&hm=e112112f334e5db7d0c5c29908470ea28a6210e8d98e2b4f0a18d887144c6851&=&format=webp" alt="ขั้นตอนที่ 2: ต้มเม็ดบัวลอย" class="w-full h-48 object-cover">
-                    <div class="p-6 flex-grow">
-                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 2</div>
-                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ต้มเม็ดบัวลอยให้สุก</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            ตั้งน้ำเปล่าให้เดือดจัด นำเม็ดบัวลอยที่ปั้นไว้ลงไปต้ม เมื่อเม็ดบัวลอยสุกจะลอยขึ้นมาผิวน้ำ ให้ใช้กระชอนตักขึ้นไปแช่ในน้ำเย็นจัดทันที เพื่อให้แป้งเหนียวนุ่มและไม่ติดกัน
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 200ms;">
-                    <img src="https://media.discordapp.net/attachments/1561279279466160138/1561282068732710983/Gemini_Generated_Image_w3qowbw3qowbw3qo.jpg?ex=6ad5c8bc&is=6ad4773c&hm=1d9a360c6dea2a737c3831f44b9b94ed64eccbe85d3db8cf12f24d533845c6a1&=&format=webp" alt="ขั้นตอนที่ 3: ทำไข่หวาน" class="w-full h-48 object-cover">
-                    <div class="p-6 flex-grow">
-                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 3</div>
-                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">ทำน้ำกะทิและไข่หวาน</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            ตั้งกะทิด้วยไฟอ่อน ใส่น้ำตาลโตนดและเกลือเล็กน้อย มัดใบเตยใส่ลงไปเพิ่มความหอม ตอกไข่ไก่ใส่ลงไปต้มในน้ำกะทิเบาๆ รอจนไข่สุกตามความชอบ (ไข่หวาน)
-                        </p>
-                    </div>
-                </div>
-
-    
-                <div class="bg-white rounded-3xl shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 reveal flex flex-col overflow-hidden" style="transition-delay: 300ms;">
-                    <img src="https://media.discordapp.net/attachments/1561279279466160138/1561282315009794048/Gemini_Generated_Image_qoogc7qoogc7qoog.jpg?ex=6ad5c8f7&is=6ad47777&hm=fa1574e742638fa30454dbb39ce9290748abfe77a6e1e6f09f92ac0ed85f61d0&=&format=webp" alt="ขั้นตอนที่ 4: จัดเสิร์ฟ" class="w-full h-48 object-cover">
-                    <div class="p-6 flex-grow">
-                        <div class="inline-block px-3 py-1 bg-dessert-primary text-white text-xs font-bold rounded-full mb-3">ขั้นตอนที่ 4</div>
-                        <h3 class="text-xl font-semibold mb-3 text-dessert-text">รวมส่วนผสมจัดเสิร์ฟ</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            นำเม็ดบัวลอยที่สะเด็ดน้ำแล้วใส่ลงในหม้อน้ำกะทิ คนเบาๆ ให้เข้ากัน รอให้เดือดปุดๆ เล็กน้อย ปิดเตา ตักใส่ถ้วยพร้อมไข่หวาน เสิร์ฟขณะร้อนเพื่อความอร่อยและหอมละมุน
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--(Media) -->
-    <section id="media" class="py-24 bg-white relative">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-bold text-dessert-text mb-4">มัลติมีเดียและแกลเลอรี</h2>
-                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full"></div>
-                <p class="text-gray-600 mt-4">รวบรวมภาพ วิดีโอ และเสียงประกอบสำหรับผลงาน</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-         
-                <div class="space-y-8 reveal">
-      
-                    <div class="bg-dessert-bg p-4 rounded-3xl shadow-soft">
-                        <h3 class="text-lg font-semibold mb-3 px-2">🎬 สื่อวิดีโอ</h3>
-                        <video class="w-full rounded-2xl shadow-inner outline-none" controls poster="https://media.discordapp.net/attachments/1561279279466160138/1561282315009794048/Gemini_Generated_Image_qoogc7qoogc7qoog.jpg?ex=6ad5c8f7&is=6ad47777&hm=fa1574e742638fa30454dbb39ce9290748abfe77a6e1e6f09f92ac0ed85f61d0&=&format=webp">
-                            <source src="https://cdn.discordapp.com/attachments/1561279279466160138/1561288940613402674/v2_awv-71d5a07d8b8aa285.mp4?ex=6ad5cf22&is=6ad47da2&hm=85b2ef6d59cac7e78f43a5788ad3c7aa855756a24a5026c6a8349746a7c7918b&" type="video/mp4">
-                            เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
-                        </video>
-                    </div>
-
-            
-                    <div class="bg-white border-2 border-dessert-accent p-6 rounded-3xl shadow-soft">
-                        <h3 class="text-lg font-semibold mb-4">✨ บัวลอยเด้งดึ๋ง</h3>
-                        <div class="bua-loy-bowl">
-                            <div class="bowl"></div>
-                            <div class="ball ball-pink"></div>
-                            <div class="ball ball-green"></div>
-                            <div class="ball ball-yellow"></div>
-                        </div>
-                    </div>
-                </div>
-
-            
-                <div class="space-y-8 reveal" style="transition-delay: 200ms;">
-                    <!-- รูปภาพแกลเลอรี -->
-                    <h3 class="text-lg font-semibold mb-4 px-2">📸 แกลเลอรีภาพ</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="overflow-hidden rounded-2xl shadow-soft">
-                            <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561301999788494858/Gemini_Generated_Image_9vnkr99vnkr99vnk.jfif?ex=6ad5db4c&is=6ad489cc&hm=1cc24b6a0af0c732b74e03ab4fb3a8d2393ac7cee76b96657cf00ba6920bf365&0" alt="Gallery 1" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="overflow-hidden rounded-2xl shadow-soft">
-                            <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561302999224029194/Gemini_Generated_Image_jwoar3jwoar3jwoa.jfif?ex=6ad5dc3a&is=6ad48aba&hm=881d76d1693846c5035737250789e3bb2eac6fbd7988b3d5b7344e854dac4b76&" alt="Gallery 2" class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="col-span-2 overflow-hidden rounded-2xl shadow-soft">
-                            <img src="https://cdn.discordapp.com/attachments/1561279279466160138/1561303237863407666/Gemini_Generated_Image_fc4wrdfc4wrdfc4w.jfif?ex=6ad5dc73&is=6ad48af3&hm=4e1ccb1fe40ff13643292a3f26400e33cde6c2b6e5c276983432e933b04dce0a&" alt="Gallery 3" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Members -->
-    <section id="team" class="py-24 bg-dessert-bg relative">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-bold text-dessert-text mb-4">สมาชิกผู้จัดทำ</h2>
-                <div class="w-24 h-1 bg-dessert-primary mx-auto rounded-full mb-4"></div>
-                <p class="text-gray-600">วิชา Multimedia System (กลุ่ม WORK24)</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!--  1 -->
-                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal">
-                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🧑‍💻</div>
-                    <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย เจษฎาภรณ์ ประกอบเกื้อ</h3>
-                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664005-8</p>
-                    <p class="text-gray-500 text-sm">หน้าที่: ออกแบบเว็บ / โค้ด</p>
-                </div>
-                <!--  2 -->
-                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 100ms;">
-                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">👩‍🎨</div>
-                    <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย ศุภกร วิชัยสุนทร</h3>
-                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664014-0</p>
-                    <p class="text-gray-500 text-sm">หน้าที่: จัดหาภาพ / ตกแต่ง</p>
-                </div>
-                <!--  3 -->
-                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 200ms;">
-                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎬</div>
-                    <h3 class="text-lg font-semibold text-dessert-text mb-1">นาย คุณากร ศรีรัตน์</h3>
-                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664011-6</p>
-                    <p class="text-gray-500 text-sm">หน้าที่: ถ่ายทำ / ตัดต่อวิดีโอ</p>
-                </div>
-                <!--  4 -->
-                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 300ms;">
-                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">🎵</div>
-                    <h3 class="text-lg font-semibold text-dessert-text mb-1">นางสาว เจือจันทร์ อร่ามเรือง</h3>
-                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664008-2</p>
-                    <p class="text-gray-500 text-sm">หน้าที่: เสียงประกอบ / พรีเซนต์</p>
-                </div>
-                <!--  5 -->
-                <div class="bg-white rounded-3xl p-6 shadow-soft hover:shadow-hover transform hover:-translate-y-2 transition-all duration-300 text-center reveal" style="transition-delay: 400ms;">
-                    <div class="w-20 h-20 mx-auto bg-dessert-accent rounded-full mb-4 flex items-center justify-center text-3xl shadow-sm">📝</div>
-                    <h3 class="text-lg font-semibold text-dessert-text mb-1">นางสาว ณิชภัทร ราชรินทร์</h3>
-                    <p class="text-dessert-primary font-medium text-sm mb-2">รหัส: 016830664007-4</p>
-                    <p class="text-gray-500 text-sm">หน้าที่: รวบรวมเนื้อหา / เรียบเรียง</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="bg-dessert-text text-white py-8 text-center">
         <p class="font-light">© 2026 มนต์เสน่ห์แห่งขนมไทย | Assignment วิชา Multimedia System</p>
     </footer>
 
-    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-
-            const revealOnScroll = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-              
-                        observer.unobserve(entry.target); 
-                    }
-                });
-            }, {
-                root: null,
-                threshold: 0.15, 
-                rootMargin: "0px 0px -50px 0px"
-            });
-
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
-
-        
             const bgMusic = document.getElementById('bg-music');
-            const musicContainer = document.getElementById('music-container');
             const musicToggle = document.getElementById('music-toggle');
             const musicIcon = document.getElementById('music-icon');
             const musicText = document.getElementById('music-text');
             const volumeSlider = document.getElementById('volume-slider');
-            let isMusicPlaying = false;
+            const musicContainer = document.getElementById('music-container');
+            const backToTop = document.getElementById('back-to-top');
 
-         
-            bgMusic.volume = volumeSlider.value;
-
-
-            volumeSlider.addEventListener('input', (e) => {
-                bgMusic.volume = e.target.value;
-                if (bgMusic.volume == 0) {
-                    musicIcon.textContent = '🔇';
-                } else if (isMusicPlaying) {
-                    musicIcon.textContent = '🎵';
-                }
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) backToTop.classList.remove('hidden');
+                else backToTop.classList.add('hidden');
             });
 
-            musicToggle.addEventListener('click', () => {
-                if (isMusicPlaying) {
-                    bgMusic.pause();
+            const savedVolume = localStorage.getItem('music_volume') || 0.5;
+            const isPlaying = localStorage.getItem('music_playing') === 'true';
+            const savedTime = parseFloat(localStorage.getItem('music_time') || 0);
+
+            bgMusic.volume = savedVolume;
+            volumeSlider.value = savedVolume;
+            bgMusic.currentTime = savedTime;
+
+            function updateUI(playing) {
+                if (playing) {
+                    musicIcon.textContent = '🎵';
+                    musicText.textContent = 'หยุดเพลง';
+                    musicContainer.classList.replace('bg-[#FFB6B9]', 'bg-[#FF9A9E]');
+                } else {
                     musicIcon.textContent = '🔇';
                     musicText.textContent = 'เล่นเพลง';
                     musicContainer.classList.replace('bg-[#FF9A9E]', 'bg-[#FFB6B9]');
-                } else {
-                    bgMusic.play().catch(error => console.log("กรุณาโต้ตอบกับหน้าเว็บก่อนเล่นเสียง", error));
-                    musicIcon.textContent = bgMusic.volume == 0 ? '🔇' : '🎵';
-                    musicText.textContent = 'หยุดเพลง';
-                    musicContainer.classList.replace('bg-[#FFB6B9]', 'bg-[#FF9A9E]');
                 }
-                isMusicPlaying = !isMusicPlaying;
+            }
+
+            if (isPlaying) {
+                bgMusic.play().then(() => updateUI(true)).catch(() => {
+                    document.addEventListener('click', function startPlay() {
+                        bgMusic.play();
+                        updateUI(true);
+                        localStorage.setItem('music_playing', 'true');
+                        document.removeEventListener('click', startPlay);
+                    }, { once: true });
+                });
+            }
+
+            bgMusic.addEventListener('timeupdate', () => {
+                localStorage.setItem('music_time', bgMusic.currentTime);
+            });
+
+            musicToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    localStorage.setItem('music_playing', 'true');
+                    updateUI(true);
+                } else {
+                    bgMusic.pause();
+                    localStorage.setItem('music_playing', 'false');
+                    updateUI(false);
+                }
+            });
+
+            volumeSlider.addEventListener('input', (e) => {
+                bgMusic.volume = e.target.value;
+                localStorage.setItem('music_volume', e.target.value);
             });
         });
     </script>
